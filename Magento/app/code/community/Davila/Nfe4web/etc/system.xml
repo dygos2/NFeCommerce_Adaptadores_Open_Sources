@@ -1,0 +1,184 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MIT LICENSE 
+ * Copyright (c) 2013 Gabriela Davila, http://davila.blog.br
+ * http://github.com/gabidavila
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * @category    Community
+ * @package     Davila_Nfe4web
+ * @copyright   Copyright (c) 2013 Gabriela Davila (http://davila.blog.br)
+ * @license     http://opensource.org/licenses/MIT  MIT License
+ */
+-->
+<config>
+	<tabs>
+		<nfe4web_config translate="label" module="nfe4web">
+			<label>NFE4WEB Configuration</label>
+			<sort_order>500</sort_order>
+		</nfe4web_config>
+	</tabs>
+	<sections>
+		<nfe4web_config_general  translate="label" module="nfe4web">
+			<label>General</label>
+			<tab>nfe4web_config</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>0</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>			
+			<groups>
+				<api translate="label"> 
+					<label>API</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>0</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<key translate="label">
+							<label>NFE4WEB API Key</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>0</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<validate>required-entry</validate>
+						</key>
+						<store_key translate="label">
+							<label>Store API Key</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>0</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<validate>required-entry</validate>
+						</store_key>
+						<email translate="label">
+							<label>Email</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>0</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<validate>validate-email required-entry</validate>
+						</email>
+						<cnpj translate="label">
+							<label>CNPJ</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>0</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>14 numeric characters</comment>
+							<validate>validate-number required-entry validate-length minimum-length-14 maximum-length-14</validate>
+						</cnpj>
+					</fields>
+				</api>
+			</groups>
+		</nfe4web_config_general>
+		<nfe4web_config_parametrization  translate="label" module="nfe4web">					
+			<label>Parametrization</label>
+			<tab>nfe4web_config</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>0</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>			
+			<groups>
+				<fields translate="label"> 
+					<label>Fields</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>1</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<number translate="label">
+							<label>Number</label>
+							<frontend_type>select</frontend_type>
+							<source_model>nfe4web/fields_address</source_model>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</number>
+						<complement translate="label">
+							<label>Complement</label>
+							<frontend_type>select</frontend_type>
+							<source_model>nfe4web/fields_address</source_model>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</complement>
+						<district translate="label">
+							<label>District</label>
+							<frontend_type>select</frontend_type>
+							<source_model>nfe4web/fields_address</source_model>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</district>
+						<company_document_id translate="label">
+							<label>Company Document ID</label>
+							<frontend_type>select</frontend_type>
+							<source_model>nfe4web/fields_customer</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</company_document_id>
+						<pf_document_id translate="label">
+							<label>PF Document ID</label>
+							<frontend_type>select</frontend_type>
+							<source_model>nfe4web/fields_customer</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</pf_document_id>
+						<pj_state_id translate="label">
+							<label>PJ State ID</label>
+							<frontend_type>select</frontend_type>
+							<source_model>nfe4web/fields_customer</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</pj_state_id>
+						<address_type translate="label">
+							<label>Address Type</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_customer_address_type</source_model>
+							<sort_order>0</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</address_type>
+					</fields>
+				</fields>
+			</groups>
+		</nfe4web_config_parametrization>
+	</sections>
+</config>

@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MIT LICENSE 
+ * Copyright (c) 2013 Gabriela Davila, http://davila.blog.br
+ * http://github.com/gabidavila
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * @category    Community
+ * @package     Davila_Nfe4web
+ * @copyright   Copyright (c) 2013 Gabriela Davila (http://davila.blog.br)
+ * @license     http://opensource.org/licenses/MIT  MIT License
+ */
+-->
+<config>
+	<modules>
+		<Davila_Nfe4web>
+			<version>1.0.0</version>
+		</Davila_Nfe4web>
+	</modules>
+	<frontend>
+		<routers>
+			<nfe4web>
+				<use>standard</use>
+				<args>
+					<module>Davila_Nfe4web</module>
+					<frontName>nfe4web</frontName>
+				</args>
+			</nfe4web>
+		</routers>
+		<layout>
+			<updates>
+				<nfe4web>
+					<file>nfe4web.xml</file>
+				</nfe4web>
+			</updates>
+		</layout>
+	</frontend>
+	<global>
+		<helpers>
+			<nfe4web>
+				<class>Davila_Nfe4web_Helper</class>
+			</nfe4web>
+		</helpers>
+		<blocks>
+			<nfe4web>
+				<class>Davila_Nfe4web_Block</class>
+			</nfe4web>
+		</blocks>
+		<models>
+			<nfe4web>
+				<class>Davila_Nfe4web_Model</class>
+				<resourceModel>nfe4web_mysql4</resourceModel>
+	  		</nfe4web>
+	  		<nfe4web_mysql4>
+				<class>Davila_Nfe4web_Model_Mysql4</class>
+				<entities>		  
+			  	<ibge>
+					<table>ibge</table>
+			  	</ibge>
+			</entities>
+	  </nfe4web_mysql4>
+		</models>
+		<resources>
+			<nfe4web_setup>
+				<setup>
+					<module>Davila_Nfe4web</module>
+					<class>Davila_Nfe4web_Model_Resource_Eav_Mysql4_Setup</class>
+				</setup>
+				<connection>
+					<use>core_setup</use>
+				</connection>
+			</nfe4web_setup>
+			<nfe4web_write>
+				<connection>
+					<use>core_write</use>
+				</connection>
+			</nfe4web_write>
+			<nfe4web_read>
+				<connection>
+					<use>core_read</use>
+				</connection>
+			</nfe4web_read>
+		</resources>
+	</global>
+	<admin>
+		<routers>
+			<nfe4web>
+				<use>admin</use>
+				<args>
+					<module>Davila_Nfe4web</module>
+					<frontName>nfe4web</frontName>
+				</args>
+			</nfe4web>
+		</routers>
+	</admin>
+	<adminhtml>
+		<translate>
+            <modules>
+                <nfe4web>
+                    <files>
+                        <default>nfe4web.csv</default>
+                    </files>
+                </nfe4web>
+            </modules>
+        </translate>
+		<menu>
+			<nfe4web module="nfe4web">
+				<title>Nota Fiscal</title>
+				<sort_order>90</sort_order>
+				<children>
+					<nfe4webbackend module="nfe4web">
+						<title>Nota fiscal Eletronica - NFE4WEB</title>
+						<sort_order>0</sort_order>
+						<action>nfe4web/adminhtml_nfe4webbackend</action>
+					</nfe4webbackend>
+				</children>
+			</nfe4web>
+		</menu>
+		<acl>
+			<resources>
+				<all>
+					<title>Allow Everything</title>
+				</all>
+				<admin>
+					<children>
+						<nfe4web translate="title" module="nfe4web">
+							<title>NFE4WEB</title>
+							<sort_order>1000</sort_order>
+							<children>
+								<nfe4webbackend translate="title">
+									<title>Nota fiscal Eletronica</title>
+								</nfe4webbackend>
+							</children>
+						</nfe4web>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+		<layout>
+			<updates>
+				<nfe4web>
+					<file>nfe4web.xml</file>
+				</nfe4web>
+			</updates>
+		</layout>
+	</adminhtml>
+	<default>
+		<nfe4web_config_parametrization>
+			<fields>
+				<number>street_1</number>
+				<complement>street_1</complement>
+				<district>street_1</district>
+				<company_document_id>taxvat</company_document_id>
+				<pf_document_id>taxvat</pf_document_id>
+				<pj_state_id>taxvat</pj_state_id>
+				<address_type>billing</address_type>
+			</fields>
+		</nfe4web_config_parametrization>
+	</default>
+</config> 
