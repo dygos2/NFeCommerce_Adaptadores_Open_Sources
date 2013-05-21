@@ -7,7 +7,7 @@
 	<author><![CDATA[PrestaBR]]></author>
 	<tab><![CDATA[administration]]></tab>
 	<confirmUninstall>Are you sure you want to uninstall nfe4web module and remove the database involved?</confirmUninstall>
-	<is_configurable>1</is_configurablee>
+	<is_configurable>1</is_configurable>
 	<need_instance>1</need_instance>
 	<limited_countries></limited_countries>
 </module>
