@@ -1,0 +1,23 @@
+================================
+Adaptador para cód. IBGE
+================================
+Versão atual - 1.0
+Data - 10/10/2011
+================================
+Versões:
+
+1.0
+
+O adaptador poderá ser utilizado em conjunto com a plataforma de eCommerce do parceiro
+A função principal desta base, é auxiliar no cadastramento do cliente comprador da Loja, pois temos obrigatoriamente 
+que enviar para a secretaria da fazenda, as informações da cidade e uf do cliente, bem como o código da cidade do mesmo.
+
+Funcionamento:
+=============
+Para utilizar o adaptador do IBGE, basta seguir os seguintes passos abaixo:
+
+1-) Copiar os 2 arquivos desta pasta (uf_cid.asp e uf_ajax.asp) para o servidor
+2-) Incluir no arquivo uf_ajax.asp, os comandos de conexão e fechamento com o banco de dados.
+3-) Instalar no Banco de dados, a base do IBGE "megaideas4_tb_ibge.sql"
+4-) Você pode utilizar a base independente, direto da sua plataforma, 
+ou utilizar em conjunto com os arquivos uf_ajax e uf_cid, os quais já estão preparados para as consultas, basta configurar o retorno para o cadastro do cliente.
