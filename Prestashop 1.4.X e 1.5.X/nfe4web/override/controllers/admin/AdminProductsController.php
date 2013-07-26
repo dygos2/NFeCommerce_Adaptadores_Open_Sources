@@ -51,7 +51,10 @@ class AdminProductsController extends AdminProductsControllerCore
 
 		$product_props = array();
 		// global informations
-		array_push($product_props, 'reference', 'ean13', 'upc', 'available_for_order', 'show_price', 'online_only', 'id_manufacturer', 'ncm', 'subst');
+		array_push($product_props, 'reference', 'ean13', 'upc',
+		'available_for_order', 'show_price', 'online_only',
+		'id_manufacturer', 'ncm', 'subst'
+		);
 
 		// specific / detailled information
 		array_push($product_props,
@@ -63,7 +66,11 @@ class AdminProductsController extends AdminProductsControllerCore
 		'uploadable_files', 'text_fields'
 		);
 		// prices
-		array_push($product_props, 'price', 'wholesale_price', 'id_tax_rules_group', 'unit_price_ratio', 'on_sale', 'unity', 'minimum_quantity', 'additional_shipping_cost', 'available_now', 'available_later', 'available_date');
+		array_push($product_props,
+			'price', 'wholesale_price', 'id_tax_rules_group', 'unit_price_ratio', 'on_sale',
+			'unity', 'minimum_quantity', 'additional_shipping_cost',
+			'available_now', 'available_later', 'available_date'
+		);
 
 		if (Configuration::get('PS_USE_ECOTAX'))
 			array_push($product_props, 'ecotax');
@@ -85,6 +92,7 @@ class AdminProductsController extends AdminProductsControllerCore
 		$product->tags = Tag::getProductTags($product->id);
 
 		$data->assign('product_type', (int)Tools::getValue('type_product', $product->getType()));
+		$data->assign('is_in_pack', (int)Pack::isPacked($product->id));
 
 		$check_product_association_ajax = false;
 		if (Shop::isFeatureActive() && Shop::getContext() != Shop::CONTEXT_ALL)
@@ -105,10 +113,6 @@ class AdminProductsController extends AdminProductsControllerCore
 		$data->assign('PS_PRODUCT_SHORT_DESC_LIMIT', Configuration::get('PS_PRODUCT_SHORT_DESC_LIMIT') ? Configuration::get('PS_PRODUCT_SHORT_DESC_LIMIT') : 400);
 		$this->tpl_form_vars['product'] = $product;
 		$this->tpl_form_vars['custom_form'] = $data->fetch();
-
-	//return parent::renderForm();
-	//$parent = AdminController::renderForm();
-	return AdminController::renderForm();
 	}
 }
 

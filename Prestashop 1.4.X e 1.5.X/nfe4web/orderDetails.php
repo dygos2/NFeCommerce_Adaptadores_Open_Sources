@@ -12,7 +12,7 @@ if ( $token != Configuration::get('NFE4WEB_STRTOKEN') || !isset($token) )
 function getOrderDta($id){
     $sql = "SELECT CONCAT_WS(' ', c.firstname, c.lastname) as fullname, 
         a.address1, a.address2, a.company, a.other, a.postcode, a.city, a.phone, a.phone_mobile, 
-        c.email, o.total_shipping, a.id_state, c.id_customer 
+        c.email, o.total_shipping, o.total_discounts, a.id_state, c.id_customer 
         FROM "._DB_PREFIX_."orders o, 
              "._DB_PREFIX_."customer c, 
              "._DB_PREFIX_."address a
@@ -23,7 +23,7 @@ function getOrderDta($id){
 }
 function getDetailProduct($id)
 {
-    $sql = "SELECT od.product_id, od.product_name, od.product_quantity, od.product_price, od.product_weight, od.reduction_percent, od.reduction_amount, p.ncm, p.subst 
+    $sql = "SELECT od.product_id, od.product_reference, od.product_supplier_reference, od.product_name, od.product_quantity, od.group_reduction, od.product_price, od.product_weight, od.reduction_percent, od.reduction_amount, p.ncm, p.subst 
                 FROM `"._DB_PREFIX_."order_detail` od, "._DB_PREFIX_."product p 
                 WHERE od.product_id = p.id_product 
                 AND od.id_order = '".$id."'";
@@ -112,7 +112,7 @@ foreach ($productDetails as $key => $value) {
             'cMun' => $municipio['cod_ibge'],
             'xMun' => $value['city'],
             'UF' => $codeState['iso_code'],
-            'CEP' => $value['postcode'],
+            'CEP' => str_replace("-", "", $value['postcode']),
             'fone' => $fone,
             'email' => $value['email']
         );
@@ -124,16 +124,19 @@ foreach ($productDetails as $key => $value) {
 		}else{
 			$pPrice = ($v['product_price'] - $v['reduction_amount']);
 		}
+		$precoFinal = (isset($v['group_reduction']) && ($v['group_reduction'] > '0') ? ($pPrice - ($pPrice * $v['group_reduction']/100)) : $pPrice);
 		$frete = $value['total_shipping'] / count($products);
+		$voucher = $value['total_discounts'] / count($products);
         $itemObject[$k] = array(
-                'cProd' => $v['product_id'],
+                'cProd' => (isset($v['product_reference']) && $v['product_reference'] !== '' ? $v['product_reference'] : $v['product_id']),
                 'xProd' => $v['product_name'],
-                'NCM' => $v['ncm'], //verificar
+                'NCM' => $v['ncm'], 
                 'uCom' => 'unid',
                 'qCom' => $v['product_quantity'],
                 'subst' => $v['subst'],
-                'vUnCom' => $pPrice,
-                'vFrete' => $frete, 
+                'vUnCom' => $precoFinal,
+                'vFrete' => $frete,
+				'vDesc' => $voucher 
             );
 		$peso[$k] = $v['product_weight'];
     }

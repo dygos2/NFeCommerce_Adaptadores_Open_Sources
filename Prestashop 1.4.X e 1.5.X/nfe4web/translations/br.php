@@ -2,11 +2,9 @@
 
 global $_MODULE;
 $_MODULE = array();
-$_MODULE['<{nfe4web}prestashop>adminnfe4webmodule_dfe6125c09c1eb4d22eadc4591820214'] = 'NFe4Web';
 $_MODULE['<{nfe4web}prestashop>adminnfe4webmodule_6cdf8f41596686cd5f0b5613dd1cbe9d'] = 'Informe o CNPJ da empresa';
 $_MODULE['<{nfe4web}prestashop>adminnfe4webmodule_1805ce8f70df1ac6fc04f8a13cd40e1e'] = 'Informe o TOKEN gerado pelo NFe4Web';
 $_MODULE['<{nfe4web}prestashop>adminnfe4webmodule_de8536d61b28e024566d3a58e0dd4558'] = 'Informe o e-mail cadastrado no NFe4Web';
-$_MODULE['<{nfe4web}prestashop>adminnfe4webmodule_410ca6e9cd5cf8f30a38241f1ff8ec9b'] = 'Este é um ambiente de Exemplo. Aqui você pode entender como utilizar o sistema Nfe4Web e emitir Notas Fiscais de teste.';
 $_MODULE['<{nfe4web}prestashop>adminnfe4webmodule_daa1c5fd16608d702a2e21a3080e77ec'] = 'NFe4Web não está configurado ainda';
 $_MODULE['<{nfe4web}prestashop>adminnfe4webmodule_b0fd6679c36bbba1f3ea8ad700ec1cf0'] = 'Clique aqui para configurar o módulo Nfe4Web';
 $_MODULE['<{nfe4web}prestashop>adminnfe4webmodule_1ceda089d5825a3835633f8db8fab2af'] = 'Se tiver alguma dúvida ou problema na integração deste módulo, por favor envie um e-mail para:';
@@ -52,9 +50,8 @@ $_MODULE['<{nfe4web}prestashop>nfe4web_daa1c5fd16608d702a2e21a3080e77ec'] = 'NFe
 $_MODULE['<{nfe4web}prestashop>nfe4web_52f4393e1b52ba63e27310ca92ba098c'] = 'Configurações Gerais';
 $_MODULE['<{nfe4web}prestashop>nfe4web_12ec3f1733cfeaa5b8e2b87c38faee24'] = 'Dados da Empresa';
 $_MODULE['<{nfe4web}prestashop>nfe4web_0ba29c6a1afacf586b03a26162c72274'] = 'Ambiente';
-$_MODULE['<{nfe4web}prestashop>nfe4web_0a52730597fb4ffa01fc117d9e71e3a9'] = 'Exemplo';
-$_MODULE['<{nfe4web}prestashop>nfe4web_756d97bb256b8580d4d71ee0c547804e'] = 'Produção';
 $_MODULE['<{nfe4web}prestashop>nfe4web_0cbc6611f5540bd0809a388dc95a615b'] = 'Homologação';
+$_MODULE['<{nfe4web}prestashop>nfe4web_756d97bb256b8580d4d71ee0c547804e'] = 'Produção';
 $_MODULE['<{nfe4web}prestashop>nfe4web_df6885046ae72586247f49b3661cf981'] = 'CNPJ da Empresa';
 $_MODULE['<{nfe4web}prestashop>nfe4web_083a15966e0c1af3f3a19b0e9fe5f7d3'] = 'TOKEN gerado pelo NFe4Web';
 $_MODULE['<{nfe4web}prestashop>nfe4web_8499f4421d9eea18dea607cd1ac789c1'] = 'E-mail cadastrado no NFe4Web';

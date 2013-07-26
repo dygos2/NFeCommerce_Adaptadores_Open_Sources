@@ -2,7 +2,7 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *                                                                 *
  * Módulo para gerar a Nota Fiscal Eletrônica                      P
- * Versão 2.1 / Compativel com o Prestashop 1.4.X e 1.5.X          R
+ * Versão 2.3 / Compativel com o Prestashop 1.4.X e 1.5.X          R
  *                                                                 E
  * NFe4Web - http://nfe4web.com.br                                 S
  * comercial@nfe4web.com.br                                        T
@@ -26,7 +26,7 @@ class nfe4web extends Module
         $this->name = 'nfe4web';
         $this->tab = 'administration';
         $this->author = 'PrestaBR';
-        $this->version = '2.2.1';
+        $this->version = '2.3.3';
 		//$this->ps_versions_compliancy = array('min' => '1.4.0'); 
         
         parent::__construct ();
@@ -58,7 +58,7 @@ class nfe4web extends Module
 			!$this->addColumnsProduct() OR
 			!$this->installIbgeTable() OR
 			!$this->installModuleTab() OR
-		    !Configuration::updateValue('NFE4WEB_ENVIRONMENT', '2') OR
+		    !Configuration::updateValue('NFE4WEB_ENVIRONMENT', '0') OR
 		    !Configuration::updateValue('NFE4WEB_CNPJ', '') OR
 			!Configuration::updateValue('NFE4WEB_TOKEN', '') OR
 			!Configuration::updateValue('NFE4WEB_EMAIL', '') OR
@@ -290,7 +290,7 @@ class nfe4web extends Module
 				if (!$this->adminTabCheck())
 				{	
 				$this->_html .= '
-					<div class="warning" style="width:800px; margin:0 auto;">'.$this->l('Copy').'&nbsp; <b>/modules/nfe4web/override/controllers/admin/templates/controllers/products/informations.tpl</b> &nbsp;'.$this->l('to the folder').'&nbsp; <b>'._PS_ADMIN_DIR_.'/themes/default/template/controllers/products/</b></div>';
+					<div class="warning" style="width:800px; margin:0 auto;">'.$this->l('Copy').'&nbsp; <b>/modules/nfe4web/override/controllers/admin/themes/default/template/controllers/productsinformations.tpl</b> &nbsp;'.$this->l('to the folder').'&nbsp; <b>'._PS_ADMIN_DIR_.'/themes/default/template/controllers/products/</b></div>';
 				}else{	$this->_html .= '
 					<p class="conf"><b>AdminProducts.php '.$this->l(' modified admin tab is installed correctly.').'</b></p>';
 					$check3 = true;
@@ -430,8 +430,9 @@ class nfe4web extends Module
 						<tr>
 							<th style="width:250px;">'.$this->l('Environment').' : </th> 
 							<td style="border:none;">
-								<input type="radio" name="environment" value="1" '.((Tools::getValue('environment', Configuration::get('NFE4WEB_ENVIRONMENT')) == '1') ? 'checked="checked"':'').' /> '.$this->l('Production').'
-								<input type="radio" name="environment" value="2" '.((Tools::getValue('environment', Configuration::get('NFE4WEB_ENVIRONMENT')) == '2')?'checked="checked"':'').' /> '.$this->l('Test').'
+								<input type="radio" name="environment" id="environment_0" value="0" '.((Tools::getValue('environment', Configuration::get('NFE4WEB_ENVIRONMENT')) == '0') ? 'checked="checked"':'').' /> <label for="environment_0" style="float:none; width:auto; cursor:pointer;" title="'.$this->l('Discover how does NFe4Web works and issue some test Invoices for an Example Company!').'">'.$this->l('Example').'</label>
+								<input type="radio" name="environment" id="environment_1" value="1" '.((Tools::getValue('environment', Configuration::get('NFE4WEB_ENVIRONMENT')) == '1')?'checked="checked"':'').' /> <label for="environment_1" style="float:none; width:auto; cursor:pointer;" title="'.$this->l('Already Registered? Choose this option to issue test Invoices for your company and check all fields before going live!').'">'.$this->l('Test').'</label>
+								<input type="radio" name="environment" id="environment_2" value="2" '.((Tools::getValue('environment', Configuration::get('NFE4WEB_ENVIRONMENT')) == '2') ? 'checked="checked"':'').' /> <label for="environment_2" style="float:none; width:auto; cursor:pointer;" title="'.$this->l('After the configuring and testing... Start issuing all your invoices in seconds!').'">'.$this->l('Production').'</label>
 							</td>
 						</tr> 
 						<tr>
@@ -467,7 +468,9 @@ class nfe4web extends Module
 					<br />
 					<center><input class="button" name="submitSave" type="submit" style="cursor:pointer" value="'.$this->l('Save').'"></center>
 				</fieldset>
-			</form>';
+			</form>
+			<br />
+			';
 			
         $this->_html .= '
 			<br /><p class="warning" align="center" style="margin:0 auto; width:820px;">'.$this->l('If you have any difficulties or doubts integrating this module, please send us an e-mail at').' <b><a href="mailto:sac@prestabr.com.br">sac@prestabr.com.br</a></b></p> <br />

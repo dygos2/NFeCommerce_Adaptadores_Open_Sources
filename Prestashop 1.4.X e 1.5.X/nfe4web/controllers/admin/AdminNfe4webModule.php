@@ -10,7 +10,7 @@ if ((_PS_VERSION_ < '1.5') && (_PS_VERSION_ > '1.4'))
 }
 class AdminNfe4webModule extends AdminTab
 {
-	public $module = 'nfe4web';
+	private $module = 'nfe4web';
 
     public function __construct()
     {
@@ -56,13 +56,7 @@ class AdminNfe4webModule extends AdminTab
             $alert[] = $this->l('Inform the e-mail registered at NFe4Web');
         }
 
-        if (Configuration::get('NFE4WEB_ENVIRONMENT') == '0')
-		{
-			$html .= '<div class="warn" align="center" style="margin:0 auto; min-width:820px;">'.$this->l('This is an Example Environment. Here you can understand how to use Nfe4Web and issue Test Invoices.').'</div><br />';
-			$url = 'http://amazon-nfe4web.elasticbeanstalk.com/nfe4web/demonstracao/integracoes/emissor_demo.php?fk_id_plataforma=3';
-			$html .= '<iframe width="100%" src="'.$url.'" style="overflow:auto; min-height:600px;"></iframe> ';
-		}
-		elseif (Configuration::get('NFE4WEB_ENVIRONMENT') == '1' || Configuration::get('NFE4WEB_ENVIRONMENT') == '2')
+        if (Configuration::get('NFE4WEB_ENVIRONMENT') == '1')
 		{
 			if (!count($alert))
 			{
@@ -71,7 +65,7 @@ class AdminNfe4webModule extends AdminTab
 				$url .= '&token=' . Configuration::get('NFE4WEB_TOKEN');
 				$url .= '&email=' . Configuration::get('NFE4WEB_EMAIL');
 				
-				$html .= '<iframe width="100%" src="'.$url.'" style="overflow:auto; min-height:600px;"></iframe>';
+				$html .= '<iframe width="100%" src="'.$url.'" style="overflow:auto; min-height:80%;"></iframe>';
 			}else{
 				$html .= '<img src="'._PS_IMG_.'admin/warn2.png" /><strong>'.$this->l('NFe4Web is not configured yet').':</strong>';
 				
@@ -84,6 +78,10 @@ class AdminNfe4webModule extends AdminTab
 				$urlMod = $_SERVER['SCRIPT_NAME'].'?tab=AdminModules&configure=nfe4web&token=' . $token;
 				$html .= '<br><br><a href="'.$urlMod.'"><strong>'.$this->l('Click here to configure the module').'</strong></a>';
         	}
+		}else{
+			$html .= '<div class="warn" align="center" style="margin:0 auto; min-width:820px;">'.$this->l('This is a Test Environment. Here you can understand how to use Nfe4Web and issue Test Invoices.').'</div>';
+			$url = 'http://amazon-nfe4web.elasticbeanstalk.com/nfe4web/demonstracao/integracoes/emissor_demo.php?fk_id_plataforma=3';
+			$html .= '<iframe width="100%" src="'.$url.'" style="overflow:auto; min-height:80%;"></iframe> ';
 		}
 		$html .= '<br /><br /><div class="warn" align="center" style="margin:0 auto; min-width:820px;">'.$this->l('If you have any difficulties or doubts integrating this module, please send us an e-mail at').' <b><a href="mailto:sac@prestabr.com.br">sac@prestabr.com.br</a></b></div> <br />';
         
