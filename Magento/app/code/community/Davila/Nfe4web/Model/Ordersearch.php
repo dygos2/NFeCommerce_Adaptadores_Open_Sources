@@ -42,16 +42,33 @@ class Davila_Nfe4web_Model_Ordersearch extends Mage_Core_Model_Abstract {
 		if(!is_array($arrParams) || count($arrParams) == 0)
 			return;
 
-		//para1
-		$from_date = $arrParams['para1'];
-		//para2
-		$to_date   = $arrParams['para2'];
-		//para3
-		$order     = $arrParams['para3'];
-		//para4
-		$status_id = $arrParams['para4'];
-		
-		$arrStatus = Mage::getModel('nfe4web/status')->getAllStatusCode();
+        $from_date="";
+        $to_date="";
+        $order = 0;
+        $status_id = "";
+
+
+        //para1
+        if(isset($arrParams['para1'])){
+            $from_date = $arrParams['para1'];
+        }
+
+        //para2
+        if(isset($arrParams['para2'])){
+            $to_date   = $arrParams['para2'];
+        }
+
+        //para3
+        if(isset($arrParams['para3'])) {
+            $order     = $arrParams['para3'];
+        }
+        //para4
+        if(isset($arrParams['para4'])){
+            $status_id = $arrParams['para4'];
+        }
+
+
+        $arrStatus = Mage::getModel('nfe4web/status')->getAllStatusCode();
 		$orders    = Mage::getModel('sales/order')->getCollection();
 		$helper    = Mage::helper('nfe4web/data');
 
@@ -78,7 +95,7 @@ class Davila_Nfe4web_Model_Ordersearch extends Mage_Core_Model_Abstract {
 		
 		$api2object = Mage::getModel('nfe4web/objects_api2result');
 		$api2result = $helper->jsonConvert($api2object->fillObject($orders));
-		
+
 		return $api2result;
 
 	}
