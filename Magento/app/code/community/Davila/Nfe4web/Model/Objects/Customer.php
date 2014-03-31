@@ -64,6 +64,9 @@ class Davila_Nfe4web_Model_Objects_Customer extends Mage_Core_Model_Abstract {
 		$address  = $helper::createGet($order, $this->address_type, 'address');
 		$customer = Mage::getModel('customer/customer')->load($order->getCustomerId());
 		$data     = array();
+        $cpf="";
+        $cnpj="";
+        $ie = "";
 		
 		foreach($this->fields as $key => $field){
 			$value	   = '';
@@ -95,7 +98,10 @@ class Davila_Nfe4web_Model_Objects_Customer extends Mage_Core_Model_Abstract {
 					break;
 
 				default:
-					$fieldname = $field['field'];
+                    $fildname = "";
+                    if(isset($field['field'])){
+                        $fieldname = $field['field'];
+                    }
 					//pega os campos customizados
 					if(array_key_exists('custom_field', $field)) {
 						$fieldname = Mage::getStoreConfig('nfe4web_config_parametrization/fields/'.$field['custom_field']);
@@ -110,7 +116,18 @@ class Davila_Nfe4web_Model_Objects_Customer extends Mage_Core_Model_Abstract {
 			}
 			$data[$key] = $value;
 
-			if($data['CNPJ'] == $data['CPF']) {
+            if(isset($data['CPF'])) {
+                $cpf = $data['CPF'];
+            }
+            if(isset($data['CNPJ'])) {
+                $cnpj = $data['CNPJ'];
+            }
+
+            if(isset($data['IE'])){
+                $ie = $data['IE'];
+            }
+
+			if($data['CNPJ'] == $cpf) {
 				if(strlen($data['CPF']) <= 11) {
 					$data['CNPJ'] = null;
 				} else {
@@ -118,7 +135,7 @@ class Davila_Nfe4web_Model_Objects_Customer extends Mage_Core_Model_Abstract {
 				}
 			}
 
-			if(($data['CPF'] == $data['IE']) || ($data['CNPJ'] == $data['IE'])) {
+			if(($cpf == $ie ) || ($cnpj == $ie)) {
 				unset($data['IE']);
 			}
 		}
